@@ -18,14 +18,16 @@ namespace Elcodi\Component\Geo\Entity;
 
 use Doctrine\Common\Collections\Collection;
 
+use Elcodi\Component\Core\Entity\Abstracts\AbstractEntity;
 use Elcodi\Component\Core\Entity\Traits\EnabledTrait;
 use Elcodi\Component\Geo\Entity\Interfaces\CountryInterface;
+use Elcodi\Component\Geo\Entity\Interfaces\ProvinceInterface;
 use Elcodi\Component\Geo\Entity\Interfaces\StateInterface;
 
 /**
- * Language
+ * Class State
  */
-class Country implements CountryInterface
+class State extends AbstractEntity implements StateInterface
 {
     use EnabledTrait;
 
@@ -44,11 +46,11 @@ class Country implements CountryInterface
     protected $name;
 
     /**
-     * @var Collection
+     * @var CountryInterface
      *
-     * States
+     * Country
      */
-    protected $states;
+    protected $country;
 
     /**
      * @var Collection
@@ -113,72 +115,86 @@ class Country implements CountryInterface
     }
 
     /**
-     * Get states
+     * Get Country
      *
-     * @return Collection States
+     * @return CountryInterface Country
      */
-    public function getStates()
+    public function getCountry()
     {
-        return $this->states;
+        return $this->country;
     }
 
     /**
-     * Set states
+     * Set Country
      *
-     * @param Collection $states States
+     * @param CountryInterface $country Country
      *
      * @return $this self Object
      */
-    public function setStates(Collection $states)
+    public function setCountry(CountryInterface $country)
     {
-        $this->states = $states;
+        $this->country = $country;
 
         return $this;
     }
 
     /**
-     * Add state
-     *
-     * @param StateInterface $state State
-     *
-     * @return $this self Object
-     */
-    public function addState(StateInterface $state)
-    {
-        if (!$this->states->contains($state)) {
-
-            $this
-                ->states
-                ->add($state);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Add state
-     *
-     * @param StateInterface $state State
-     *
-     * @return $this self Object
-     */
-    public function removeState(StateInterface $state)
-    {
-        $this
-            ->states
-            ->removeElement($state);
-
-        return $this;
-    }
-
-    /**
-     * Get Provinces
+     * Get provinces
      *
      * @return Collection Provinces
      */
     public function getProvinces()
     {
         return $this->provinces;
+    }
+
+    /**
+     * Set provinces
+     *
+     * @param Collection $provinces Provinces
+     *
+     * @return $this self Object
+     */
+    public function setProvinces(Collection $provinces)
+    {
+        $this->provinces = $provinces;
+
+        return $this;
+    }
+
+    /**
+     * Add province
+     *
+     * @param ProvinceInterface $province Province
+     *
+     * @return $this self Object
+     */
+    public function addProvince(ProvinceInterface $province)
+    {
+        if (!$this->provinces->contains($province)) {
+
+            $this
+                ->provinces
+                ->add($province);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Add province
+     *
+     * @param ProvinceInterface $province Province
+     *
+     * @return $this self Object
+     */
+    public function removeProvince(ProvinceInterface $province)
+    {
+        $this
+            ->provinces
+            ->removeElement($province);
+
+        return $this;
     }
 
     /**
@@ -189,5 +205,17 @@ class Country implements CountryInterface
     public function getCities()
     {
         return $this->cities;
+    }
+
+    /**
+     * Get siblings
+     *
+     * @return Collection siblings
+     */
+    public function getSiblings()
+    {
+        return $this
+            ->country
+            ->getStates();
     }
 }

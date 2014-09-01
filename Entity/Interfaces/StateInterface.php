@@ -21,10 +21,26 @@ use Doctrine\Common\Collections\Collection;
 use Elcodi\Component\Core\Entity\Interfaces\EnabledInterface;
 
 /**
- * interface CountryInterface
+ * Interface StateInterface
  */
-interface CountryInterface extends EnabledInterface
+interface StateInterface extends EnabledInterface
 {
+    /**
+     * Set id
+     *
+     * @param string $id Id
+     *
+     * @return $this Self object
+     */
+    public function setId($id);
+
+    /**
+     * Get id
+     *
+     * @return string Id
+     */
+    public function getId();
+
     /**
      * Sets Code
      *
@@ -58,45 +74,54 @@ interface CountryInterface extends EnabledInterface
     public function getName();
 
     /**
-     * Get states
+     * Get Country
      *
-     * @return Collection States
+     * @return CountryInterface Country
      */
-    public function getStates();
+    public function getCountry();
 
     /**
-     * Set states
+     * Set Country
      *
-     * @param Collection $states States
+     * @param CountryInterface $country Country
      *
      * @return $this self Object
      */
-    public function setStates(Collection $states);
+    public function setCountry(CountryInterface $country);
 
     /**
-     * Add state
-     *
-     * @param StateInterface $state State
-     *
-     * @return $this self Object
-     */
-    public function addState(StateInterface $state);
-
-    /**
-     * Add state
-     *
-     * @param StateInterface $state State
-     *
-     * @return $this self Object
-     */
-    public function removeState(StateInterface $state);
-
-    /**
-     * Get Provinces
+     * Get provinces
      *
      * @return Collection Provinces
      */
     public function getProvinces();
+
+    /**
+     * Set provinces
+     *
+     * @param Collection $provinces Provinces
+     *
+     * @return $this self Object
+     */
+    public function setProvinces(Collection $provinces);
+
+    /**
+     * Add province
+     *
+     * @param ProvinceInterface $province Province
+     *
+     * @return $this self Object
+     */
+    public function addProvince(ProvinceInterface $province);
+
+    /**
+     * Add province
+     *
+     * @param ProvinceInterface $province Province
+     *
+     * @return $this self Object
+     */
+    public function removeProvince(ProvinceInterface $province);
 
     /**
      * Get Cities
@@ -104,4 +129,11 @@ interface CountryInterface extends EnabledInterface
      * @return Collection Cities
      */
     public function getCities();
+
+    /**
+     * Get siblings
+     *
+     * @return Collection siblings
+     */
+    public function getSiblings();
 }

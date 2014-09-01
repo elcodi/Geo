@@ -19,31 +19,31 @@ namespace Elcodi\Component\Geo\Factory;
 use Doctrine\Common\Collections\ArrayCollection;
 
 use Elcodi\Component\Core\Factory\Abstracts\AbstractFactory;
-use Elcodi\Component\Geo\Entity\Interfaces\CountryInterface;
+use Elcodi\Component\Geo\Entity\Interfaces\PostalCodeInterface;
 
 /**
- * Class CountryFactory
+ * Class PostalCodeFactory
  */
-class CountryFactory extends AbstractFactory
+class PostalCodeFactory extends AbstractFactory
 {
     /**
-     * Creates an instance of a simple country.
+     * Creates an instance of an entity.
      *
-     * This method must return always an empty instance for related entity
+     * This method must return always an empty instance
      *
-     * @return CountryInterface Empty entity
+     * @return PostalCodeInterface Empty entity
      */
     public function create()
     {
         /**
-         * @var CountryInterface $country
+         * @var PostalCodeInterface $postalCode
          */
         $classNamespace = $this->getEntityNamespace();
-        $country = new $classNamespace();
-        $country
-            ->setStates(new ArrayCollection())
+        $postalCode = new $classNamespace();
+        $postalCode
+            ->setCities(new ArrayCollection)
             ->setEnabled(true);
 
-        return $country;
+        return $postalCode;
     }
 }
