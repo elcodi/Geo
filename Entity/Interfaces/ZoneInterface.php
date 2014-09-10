@@ -21,16 +21,16 @@ use Doctrine\Common\Collections\Collection;
 use Elcodi\Component\Core\Entity\Interfaces\EnabledInterface;
 
 /**
- * interface CountryInterface
+ * Interface ZoneInterface
  */
-interface CountryInterface extends EnabledInterface
+interface ZoneInterface extends EnabledInterface
 {
     /**
      * Sets Code
      *
      * @param string $code Code
      *
-     * @return $this self Object
+     * @return self Self object
      */
     public function setCode($code);
 
@@ -46,7 +46,7 @@ interface CountryInterface extends EnabledInterface
      *
      * @param string $name Name
      *
-     * @return $this self Object
+     * @return self Self object
      */
     public function setName($name);
 
@@ -58,59 +58,36 @@ interface CountryInterface extends EnabledInterface
     public function getName();
 
     /**
-     * Get states
+     * Sets Zone members
      *
-     * @return Collection States
+     * @param Collection $members Zone Members
+     *
+     * @return self Self object
      */
-    public function getStates();
+    public function setMembers(Collection $members);
 
     /**
-     * Set states
+     * Get Zone members
      *
-     * @param Collection $states States
+     * @return Collection Zone members
+     */
+    public function getMembers();
+
+    /**
+     * Add zone member
+     *
+     * @param ZoneMemberInterface $member Zone member
      *
      * @return $this self Object
      */
-    public function setStates(Collection $states);
+    public function addMember(ZoneMemberInterface $member);
 
     /**
-     * Add state
+     * Removed zone member
      *
-     * @param StateInterface $state State
+     * @param ZoneMemberInterface $member Zone member
      *
      * @return $this self Object
      */
-    public function addState(StateInterface $state);
-
-    /**
-     * Add state
-     *
-     * @param StateInterface $state State
-     *
-     * @return $this self Object
-     */
-    public function removeState(StateInterface $state);
-
-    /**
-     * Get Provinces
-     *
-     * @return Collection Provinces
-     */
-    public function getProvinces();
-
-    /**
-     * Get Cities
-     *
-     * @return Collection Cities
-     */
-    public function getCities();
-
-    /**
-     * Return if a country is equal than current
-     *
-     * @param CountryInterface $country Country to be compared with
-     *
-     * @return boolean Countries are the same
-     */
-    public function equals(CountryInterface $country);
+    public function removeMember(ZoneMemberInterface $member);
 }
